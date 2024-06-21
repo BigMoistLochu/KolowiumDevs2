@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage("Checkout") {
+            steps {
+                git url: 'https://github.com/BigMoistLochu/KolowiumDevs2/tree/main/Zadanie2', branch: 'main'
+            }
+        }
+        stage("Compile and Build") {
+            steps {
+                sh '''
+                mvn compile
+                '''
+            }
+        }
+
+        stage("Unit Tests") {
+            steps {
+                sh '''
+                mvn test
+                '''
+            }
+        }
+        
+    }
+}
