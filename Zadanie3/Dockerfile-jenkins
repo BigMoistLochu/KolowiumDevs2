@@ -1,0 +1,11 @@
+FROM jenkins/jenkins:lts
+USER root
+RUN apt-get update
+USER jenkins
+RUN jenkins-plugin-cli --plugins htmlpublisher
+RUN jenkins-plugin-cli --plugins sonar
+# RUN jenkins-plugin-cli --plugins checkstyle nie dziala wtyczka dziwne
+
+EXPOSE 8080
+
+CMD ["jenkins.sh"]

@@ -1,0 +1,16 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Instaluj maven
+RUN apt-get update && \
+apt-get install -y maven
+
+# Zpotrzebna wtyczka
+RUN jenkins-plugin-cli --plugins htmlpublisher
+
+USER jenkins
+
+EXPOSE 8080
+
+CMD ["jenkins.sh"]

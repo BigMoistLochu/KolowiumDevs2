@@ -1,0 +1,7 @@
+FROM jenkins/inbound-agent:latest-jdk11
+USER root
+# zainstaluj mavena
+RUN apt-get update && \
+    apt-get install -y maven
+# wroc do usera
+USER jenkins

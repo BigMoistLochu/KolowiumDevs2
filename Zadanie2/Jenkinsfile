@@ -21,6 +21,19 @@ pipeline {
                 '''
             }
         }
+
+        stage("Analys Code") {
+            steps {
+                sh '''
+                mvn verify
+                '''
+                publishHTML (target: [
+                reportDir: 'target/site/checkstyle',
+                reportFiles: 'main.html',
+                reportName: "Checkstyle Report"
+                ])
+            }
+        }
         
     }
 }
